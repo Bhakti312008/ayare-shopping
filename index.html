@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYARE | Online Shopping</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f5ff;
+      color: #242039;
+    }
+    header {
+      background: #fff;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px #ddd;
+    }
+    .logo { font-size: 27px; font-weight: bold; color: #7046d8; }
+    .cart { border: 0; background: #7046d8; color: white;
+      padding: 10px 14px; border-radius: 10px; }
+    .hero {
+      background: linear-gradient(135deg, #7046d8, #b39aff);
+      color: white; padding: 35px 20px; text-align: center;
+    }
+    .hero h1 { font-size: 32px; margin: 5px; }
+    .search { width: 100%; padding: 14px; border: 1px solid #ddd;
+      border-radius: 12px; margin-top: 18px; font-size: 16px; }
+    main { padding: 20px 14px; }
+    .categories { display: flex; gap: 10px; overflow-x: auto; }
+    .category { background: white; padding: 12px; border-radius: 12px;
+      white-space: nowrap; border: 1px solid #e6defb; }
+    .products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .product { background: white; padding: 12px; border-radius: 14px;
+      box-shadow: 0 3px 12px #e8e2f5; }
+    .picture { font-size: 48px; text-align: center; padding: 18px 0;
+      background: #f0ebff; border-radius: 10px; }
+    .product h3 { font-size: 16px; }
+    .price { color: #7046d8; font-weight: bold; }
+    .add { width: 100%; padding: 10px; background: #7046d8;
+      color: white; border: 0; border-radius: 9px; }
+    footer { text-align: center; padding: 22px; color: #665d80; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">AYARE</div>
+    <button class="cart" onclick="showCart()">🛒 Cart (<span id="count">0</span>)</button>
+  </header>
+
+  <section class="hero">
+    <h1>Discover More. Shop Better.</h1>
+    <p>Everything you love, in one place.</p>
+    <input class="search" id="search" placeholder="🔍 Search products..."
+      oninput="filterProducts()">
+  </section>
+
+  <main>
+    <h2>Shop by Category</h2>
+    <div class="categories">
+      <div class="category">👗 Fashion</div>
+      <div class="category">🏠 Home</div>
+      <div class="category">📱 Electronics</div>
+      <div class="category">📚 Books</div>
+      <div class="category">✨ Lifestyle</div>
+    </div>
+
+    <h2>Popular Products</h2>
+    <div class="products" id="products">
+      <div class="product" data-name="bag">
+        <div class="picture">🎒</div>
+        <h3>Everyday Backpack</h3>
+        <p class="price">₹499</p>
+        <button class="add" onclick="addCart('Everyday Backpack')">Add to Cart</button>
+      </div>
+      <div class="product" data-name="bottle">
+        <div class="picture">🧴</div>
+        <h3>Water Bottle</h3>
+        <p class="price">₹199</p>
+        <button class="add" onclick="addCart('Water Bottle')">Add to Cart</button>
+      </div>
+      <div class="product" data-name="notebook">
+        <div class="picture">📒</div>
+        <h3>Classic Notebook</h3>
+        <p class="price">₹99</p>
+        <button class="add" onclick="addCart('Classic Notebook')">Add to Cart</button>
+      </div>
+      <div class="product" data-name="headphones">
+        <div class="picture">🎧</div>
+        <h3>Headphones</h3>
+        <p class="price">₹799</p>
+        <button class="add" onclick="addCart('Headphones')">Add to Cart</button>
+      </div>
+    </div>
+    <h2>Become an AYARE Seller</h2>
+    <p>Interested in selling? Contact us to learn more.</p>
+    <p>Email: your-email@example.com</p>
+  </main>
+
+  <footer>© 2026 AYARE. Your shopping journey starts here.</footer>
+
+  <script>
+    let cart = [];
+    function addCart(name) {
+      cart.push(name);
+      document.getElementById('count').textContent = cart.length;
+      alert(name + ' added to demo cart!');
+    }
+    function showCart() {
+      alert(cart.length ? 'Your demo cart:\\n' + cart.join('\\n') :
+        'Your cart is empty.');
+    }
+    function filterProducts() {
+      const q = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('.product').forEach(p => {
+        p.style.display = p.dataset.name.includes(q) ||
+          p.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+  </html>
+  
